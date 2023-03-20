@@ -54,6 +54,7 @@ $hotels = [
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c5d4023dee.js" crossorigin="anonymous"></script>
 
     <title>PHP Hotel</title>
 
@@ -61,11 +62,14 @@ $hotels = [
 
 <body>
     <div class="container py-5">
-        <table class="table border">
+        <table class="table border text-center text-capitalize">
             <thead>
                 <tr>
                     <?php
                         foreach ($hotels[0] as $key => $value) {
+                            if ($key == 'distance_to_center') {
+                                $key = 'distance';
+                            }
                             ?>
                                 <th scope="col"><?php echo($key) ?></th>
                             <?php
@@ -80,9 +84,32 @@ $hotels = [
                             <tr>
                                 <?php
                                     foreach ($hotels[$i] as $key => $value) {
-                                        ?>
-                                            <td><?php echo ($value);?></td>
-                                        <?php
+                                        if ($key == 'distance_to_center') {
+                                            ?>
+                                                <td><?php echo ($value);?> km</td>
+                                            <?php
+                                        }
+                                        elseif($key == 'parking'){
+                                            if ($value) {
+                                                ?>
+                                                    <td>
+                                                        <i class="fa-solid fa-square-parking" style="color: blue;"></i>
+                                                    </td>
+                                                <?php
+                                            }
+                                            else{
+                                                ?>
+                                                    <td>
+                                                        <i class="fa-solid fa-ban" style="color: red;"></i>
+                                                    </td>
+                                                <?php
+                                            }
+                                        }
+                                        else{
+                                            ?>
+                                                <td><?php echo ($value);?></td>
+                                            <?php
+                                        }
                                     }
                                 ?>
                             </tr>
@@ -91,15 +118,7 @@ $hotels = [
                 ?>
             </tbody>
         </table>
-        <!-- 
-        'name' => 'Hotel Milano',
-        'description' => 'Hotel Milano Descrizione',
-        'parking' => true,
-        'vote' => 2,
-        'distance_to_center' => 50 
-        -->
     </div>
-
 </body>
 
 </html>
