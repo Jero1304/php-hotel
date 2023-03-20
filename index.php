@@ -64,21 +64,13 @@ $hotels = [
         <table class="table border">
             <thead>
                 <tr>
-                    <th scope="col">
-                        name
-                    </th>
-                    <th scope="col">
-                        description
-                    </th>
-                    <th scope="col">
-                        parking
-                    </th>
-                    <th scope="col">
-                        vote
-                    </th>
-                    <th scope="col">
-                        distance
-                    </th>
+                    <?php
+                        foreach ($hotels[0] as $key => $value) {
+                            ?>
+                                <th scope="col"><?php echo($key) ?></th>
+                            <?php
+                        }
+                    ?>
                 </tr>
             </thead>
             <tbody>
